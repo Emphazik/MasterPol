@@ -1,0 +1,43 @@
+﻿<Window x:Class="MasterPol.Windows.MasterPolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterPol.Windows"
+        mc:Ignorable="d"
+        Title="Главная страница - MasterPol" Height="850" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Images/MasterPol.ico">
+    <Grid>
+        <Image Source="/Images/MasterPol.png" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="225,20,0,0"/>
+        <Label Content="Мастер Пол" FontFamily="Segoe UI" FontSize="28" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" HorizontalAlignment="Center"  Margin="-95,20,0,0" Height="100" Width="190"/>
+
+        <ListView x:Name="PartnersView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,190,10,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="750" Height="120">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding CorrectLogo}" HorizontalAlignment="Center" Height="116" VerticalAlignment="Top" Width="212"/>
+                        <TextBlock Text="{Binding DisplayName}" FontSize="16" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Width="300" />
+                        <TextBlock Text="{Binding Director}" FontSize="14" Grid.Column="1" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="290"/>
+                        <TextBlock Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Margin="10,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="209">
+                            <Run Text="+7"/>
+                            <Run Text="{Binding Phone}" />
+                        </TextBlock>
+                        <Label Grid.Column="1" Content="Рейтинг:" FontSize="14" HorizontalAlignment="Left" Margin="5,83,0,0" VerticalAlignment="Top"/>
+                        <TextBlock Text="{Binding Rating}" FontSize="14" Grid.Column="1" HorizontalAlignment="Left" Margin="69,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="209"/>
+                        <TextBlock Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PercentSales}" VerticalAlignment="Top" Width="87" Height="72" Margin="20,47,0,0"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBox x:Name="SearchTextbox" HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="310" Height="30" TextChanged="SearchTextbox_TextChanged" />
+        <Button x:Name="ClearButton" Content="Очистить" Background="#F4E8D3" HorizontalAlignment="Left" Margin="460,155,0,0" VerticalAlignment="Top" Height="30" Width="100" Click="ClearButton_Click" />
+
+        <ComboBox x:Name="FilterComboBox" HorizontalAlignment="Left" Margin="330,155,0,0" VerticalAlignment="Top" Width="120" Height="30" SelectionChanged="FilterComboBox_SelectionChanged" />
+
+    </Grid>
+</Window>

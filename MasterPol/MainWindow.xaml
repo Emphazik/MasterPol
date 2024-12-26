@@ -1,0 +1,20 @@
+﻿<Window x:Class="MasterPol.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MasterPol"
+        mc:Ignorable="d"
+        Title="Страница Авторизации - MasterPol" Height="400" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/Images/MasterPol.ico">
+    <Grid>
+        <Image Source="/Images/MasterPol.png" Width="100" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="318,20,0,0"/>
+        <Label Content="Мастер Пол" FontFamily="Segoe UI" FontSize="28" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" HorizontalAlignment="Left"  Margin="108,20,0,0" Height="100" Width="190"/>
+        <TextBox x:Name="LoginBox" HorizontalAlignment="Left" Margin="225,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Height="30"/>
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="225,216,0,0" PasswordChar="*"  VerticalAlignment="Top" Width="170" Height="30"/>
+        <Label Content="Login:" FontFamily="Segoe UI" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="120,162,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
+        <Label Content="Password:" FontFamily="Segoe UI" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="120,216,0,0" VerticalAlignment="Top" Width="100" Height="30"/>
+
+        <Button x:Name="AuthorizeButton" Content="Авторизоваться" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Margin="235,281,0,0" VerticalAlignment="Top" Height="30" Width="150" RenderTransformOrigin="0.908,0.546" Click="AuthorizeButton_Click"/>
+
+    </Grid>
+</Window>
