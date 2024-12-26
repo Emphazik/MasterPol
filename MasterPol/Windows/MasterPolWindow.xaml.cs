@@ -28,56 +28,56 @@ namespace MasterPol.Windows
         {
             InitializeComponent();
             LoadPartners();
-            LoadFilterOptions();
+            //LoadFilterOptions();
         }
 
         private void LoadPartners()
         {
             PartnersList = MasterPolBD.Partners.ToList();
-            UpdatePartnersView();
+            //UpdatePartnersView();
         }
 
         private void LoadFilterOptions()
         {
-            var types = MasterPolBD.TypePartners
-                .Select(t => t.NameType)
-                .ToList();
+            //var types = MasterPolBD.TypePartners
+            //    .Select(t => t.NameType)
+            //    .ToList();
 
-            FilterComboBox.Items.Clear();
-            FilterComboBox.Items.Add("Все");
-            foreach (var type in types)
-            {
-                FilterComboBox.Items.Add(type);
-            }
-            FilterComboBox.SelectedIndex = 0;
+            //FilterComboBox.Items.Clear();
+            //FilterComboBox.Items.Add("Все");
+            //foreach (var type in types)
+            //{
+            //    FilterComboBox.Items.Add(type);
+            //}
+            //FilterComboBox.SelectedIndex = 0;
         }
 
         private void UpdatePartnersView()
         {
-            string query = SearchTextbox.Text.ToLower();
-            string selectedType = FilterComboBox.SelectedItem?.ToString();
+            //string query = SearchTextbox.Text.ToLower();
+            //string selectedType = FilterComboBox.SelectedItem?.ToString();
 
-            var filteredList = PartnersList.Where(p =>
-                (selectedType == "Все" || p.TypePartners?.NameType == selectedType) &&
-                (
-                    (p.TypePartners?.NameType ?? "").ToLower().Contains(query) ||
-                    (p.NamePartner ?? "").ToLower().Contains(query) ||
-                    (p.Director ?? "").ToLower().Contains(query) ||
-                    (p.Phone ?? "").ToLower().Contains(query)
-                )
-            ).ToList();
+            //var filteredList = PartnersList.Where(p =>
+            //    (selectedType == "Все" || p.TypePartners?.NameType == selectedType) &&
+            //    (
+            //        (p.TypePartners?.NameType ?? "").ToLower().Contains(query) ||
+            //        (p.NamePartner ?? "").ToLower().Contains(query) ||
+            //        (p.Director ?? "").ToLower().Contains(query) ||
+            //        (p.Phone ?? "").ToLower().Contains(query)
+            //    )
+            //).ToList();
 
-            PartnersView.ItemsSource = filteredList;
+            //PartnersView.ItemsSource = filteredList;
         }
 
         private void SearchTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UpdatePartnersView();
+            //UpdatePartnersView();
         }
 
         private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdatePartnersView();
+            //UpdatePartnersView();
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

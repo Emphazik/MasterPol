@@ -47,5 +47,28 @@ namespace MasterPol.Models
                 }
             }
         }
+
+       public string Sales
+        {
+            get
+            {
+                int totalQuantity1 = Partners?.PartnerProducts.Sum(p => p.Quantity) ?? 0;
+
+                if( totalQuantity1 <= 10000)
+                {
+                    return "0%";
+                } else if (totalQuantity1 <= 65000)
+                {
+                    return "5%";
+                }
+                else if (totalQuantity1 <= 165000)
+                {
+                    return "10%";
+                } else
+                {
+                    return "15%";
+                }
+            }
+        }
     }
 }

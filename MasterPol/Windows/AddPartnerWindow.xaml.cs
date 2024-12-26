@@ -34,30 +34,49 @@ namespace MasterPol.Windows
 
             if (CurrentPartner != null)
             {
-                NameTextBox.Text = CurrentPartner.NamePartner;
+                ExistingPartnersComboBox.SelectedValue = CurrentPartner.NamePartner;
                 TypeComboBox.SelectedValue = CurrentPartner.TypePartner;
                 RatingTextBox.Text = CurrentPartner.Rating.ToString();
                 AddressTextBox.Text = CurrentPartner.Address;
-                DirectorTextBox.Text = CurrentPartner.Director;
                 PhoneTextBox.Text = CurrentPartner.Phone;
                 EmailTextBox.Text = CurrentPartner.Email;
                 INNTextBox.Text = CurrentPartner.INN;
+                LogoComboBox.SelectedItem = CurrentPartner.Logo;
+                DirectorComboBox.SelectedItem = CurrentPartner.Director;
             }
         }
+
 
         private void LoadTypeComboBox()
         {
             TypeComboBox.ItemsSource = MasterPolBD.TypePartners.ToList();
             TypeComboBox.DisplayMemberPath = "NameType";
             TypeComboBox.SelectedValuePath = "idType";
+
+            LogoComboBox.ItemsSource = new List<string>
+            {
+                "basaStroit.png",
+                "mont.png",
+                "parket.png",
+                "picture.png"
+            };
+
+            ExistingPartnersComboBox.ItemsSource = MasterPolBD.Partners
+                .Select(p => p.NamePartner)
+                .Distinct()
+                .ToList();
+
+            DirectorComboBox.ItemsSource = MasterPolBD.Partners
+                .Select(p => p.Director)
+                .Distinct()
+                .ToList();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(NameTextBox.Text) ||
-                    !int.TryParse(RatingTextBox.Text, out int rating) || rating < 0)
+                if (!int.TryParse(RatingTextBox.Text, out int rating) || rating < 0)
                 {
                     MessageBox.Show("Введите корректные данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -80,14 +99,15 @@ namespace MasterPol.Windows
                     MasterPolBD.Partners.Add(CurrentPartner);
                 }
 
-                CurrentPartner.NamePartner = NameTextBox.Text;
                 CurrentPartner.TypePartner = (int)TypeComboBox.SelectedValue;
                 CurrentPartner.Rating = rating;
                 CurrentPartner.Address = AddressTextBox.Text;
-                CurrentPartner.Director = DirectorTextBox.Text;
                 CurrentPartner.Phone = PhoneTextBox.Text;
                 CurrentPartner.Email = EmailTextBox.Text;
                 CurrentPartner.INN = INNTextBox.Text;
+                CurrentPartner.NamePartner = ExistingPartnersComboBox.SelectedItem?.ToString();
+                CurrentPartner.Director = DirectorComboBox.SelectedItem?.ToString();
+                CurrentPartner.Logo = LogoComboBox.SelectedItem?.ToString();
 
                 MasterPolBD.SaveChanges();
                 DialogResult = true;
